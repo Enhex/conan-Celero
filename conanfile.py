@@ -9,7 +9,7 @@ class CeleroConan(ConanFile):
     description = "C++ Benchmark Authoring Library/Framework"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
-    default_options = "shared=True"
+    default_options = "shared=False"
     generators = "cmake"
 
     def source(self):
@@ -36,4 +36,8 @@ class CeleroConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["celero"]
+        if not self.options.shared:
+            self.cpp_info.defines += ["CELERO_STATIC"]
+        if self.settings.os == "Windows":
+            self.cpp_info.defines += ["WIN32"]
 
