@@ -36,7 +36,7 @@ class CeleroConan(ConanFile):
 
     def package_info(self):
         if self.settings.build_type == "Debug":
-            self.cpp_info.libs = ["celerod"]
+            self.cpp_info.libs = ["celero-d"]
         else:
             self.cpp_info.libs = ["celero"]
         if not self.options.shared:
